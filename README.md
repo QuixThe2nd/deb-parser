@@ -1,4 +1,4 @@
-# deb-parser
+# Deb Parser
 Parse deb files using php
 ## How to use
 1. Put file.deb in the same directory as index.php
