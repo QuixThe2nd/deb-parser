@@ -9,7 +9,7 @@ if(str_starts_with($line, 'Package: '))
 ```
 with this:
 ```
-if(substr( $string_n, 0, 9) === "Package: ")
+if(substr($line, 0, 9) === "Package: ")
     $bundleid = substr($line, 9);
 ```
 ## How to use
