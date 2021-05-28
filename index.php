@@ -1,11 +1,10 @@
 <?php
+$files_in_dir = scandir(__DIR__);
 $output = shell_exec('cd ' . __DIR__ . ' && ar x file.deb && tar -xf control.tar.gz && tar -xf control.tar.xz');
-unlink('debian-binary');
-unlink('data.tar.lzma');
-unlink('data.tar.xz');
-unlink('control.tar.gz');
-unlink('control.tar.xz');
-unlink('postinst');
+foreach(scandir(__DIR__) as $file){
+    if(!in_array($file, $files_in_dir) && $file != 'control')
+        unlink($file);
+}
 foreach(explode(PHP_EOL, file_get_contents('control')) as $line){
     if(str_starts_with($line, 'Package: '))
         $bundleid = substr($line, 9);
